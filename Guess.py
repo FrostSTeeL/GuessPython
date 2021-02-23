@@ -1,20 +1,30 @@
+#Import
+import os
+
+#Generate number
 from random import randint
 for _ in range(1):
     value = (randint(0, 100))
 
-print("I picked a number between 1 and 100, let's see if you can guess it!")
+print("I picked a number between 1 and 100, can you guess it?")
+guess = int(input("Enter your guess: "))
 
-guess = int(input("Guess the number: "))
-
+#Guess processing
 while guess != value:
     if(guess > value):
-        print("Go lower ")
-        guess = int(input("Guess the number again: "))
+        if(guess - value > 20):
+            print("Your guess is way too high!")
+        else:
+            print("Your guess is pretty close, a little bit lower!")
+        guess = int(input("Try again!: "))
     elif(guess < value):
-        print("Go higher ")
-        guess = int(input("Guess the number again: "))
+        if(guess - value < 20):
+            print("Your guess is way too low!")
+        else:
+            print("Your guess is pretty close, a little bit higher!")
+        guess = int(input("Try again!: "))
 else:
-    print("You Win !!! it was " + str(value) )
+    print("You win! it was " + str(value) + "!!")
 
-import os
+#Pause
 os.system('pause')
