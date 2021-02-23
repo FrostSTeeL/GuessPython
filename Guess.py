@@ -12,13 +12,13 @@ guess = int(input("Enter your guess: "))
 #Guess processing
 while guess != value:
     if(guess > value):
-        if(guess - value > 20):
+        if(guess - value > 10):
             print("Your guess is way too high!")
         else:
             print("Your guess is pretty close, a little bit lower!")
         guess = int(input("Try again!: "))
     elif(guess < value):
-        if(guess - value < 20):
+        if(value - guess > 10):
             print("Your guess is way too low!")
         else:
             print("Your guess is pretty close, a little bit higher!")
