@@ -1,44 +1,53 @@
-# Import
+# import
+import random
 import os
 
-# Generate number
-from random import randint
-for _ in range(1):
-    value = (randint(1, 100))
-
+# variables
+play_game = "y"
 tries = 1
 
-print("I picked a number between 1 and 100, can you guess it?")
-guess = int(input("Enter your guess: "))
+# game loop
+while play_game.lower() == "y":
+    print("Hello, i am going to pick a number between 1 and any number you like and you will try to guess it")
 
-# Guess processing
-while guess != value:
+    # game variables
+    upper_limit = int(input("Choose a number: "))
+    number = random.randint(1, int(upper_limit))
 
-    # Try counter
-    tries = tries + 1
-    
-    # If the guess is higher
-    if(guess > value):
-        if(guess - value > 10):
-            print("Your guess is too high, go way lower!")
-        elif(guess - value <= 5):
-            print("You are almost there, a tiny bit lower!")
-        elif(guess - value <= 10):
-            print("Your guess is pretty close, a little bit lower!")
-        guess = int(input("Try again!: "))
+    # pussy check
+    while upper_limit < 50:
+        print("below 50 would be too easy don't you think?")
+        upper_limit = int(input("Choose a number: "))
+    print("I picked a number between 1 and " +
+          str(upper_limit) + ", can you guess it?")
+    guess = int(input("Take a guess: "))
 
-    # If the guess is lower
-    elif(guess < value):
-        if(value - guess >= 10):
-            print("Your guess is too low, go way higher!")
-        elif(value - guess <= 5):
-            print("You are almost there, a tiny bit higher!")
-        elif(value - guess <= 10):
-            print("Your guess is pretty close, a little bit higher!")
-        guess = int(input("Try again!: "))
-else:
-    print("You win! it was " + str(value) + "!!")
-    print("It took you " + str(tries) + " tries to guess the number!")
+    # guess computation
+    while guess != number:
+        tries = tries + 1
+        if (guess > number):
+            if (guess - number > upper_limit / 6):
+                print("Your guess is really high")
+            elif (guess - number <= upper_limit / 20):
+                print("Really close now, go a little lower")
+            elif (guess - number <= upper_limit / 6):
+                print("Still a bit high, but close!")
+            guess = int(input("Guess again: "))
+        elif (guess < number):
+            if (number - guess > upper_limit / 6):
+                print("Your guess is really low")
+            elif (number - guess <= upper_limit / 20):
+                print("Really close now, go a little higher")
+            elif (number - guess <= upper_limit / 6):
+                print("Still a bit low, but close!")
+            guess = int(input("Guess again: "))
+    else:
+        print("You win! Number was " + str(number) +
+              " and it took you " + str(tries) + " tries to guess")
 
-# Pause
-os.system('pause')
+# try again?
+    play_game = input("Wanna try again? y/n: ")
+
+# exit
+print("Thank you for playing!")
+os.system("pause")
