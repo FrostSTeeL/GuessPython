@@ -4,10 +4,13 @@ import os
 
 # variables
 play_game = "y"
-tries = 1
 
 # game loop
 while play_game.lower() == "y":
+
+    # try counter variable
+    tries = 1
+
     print("Hello, i am going to pick a number between 1 and any number you like and you will try to guess it")
 
     # game variables
